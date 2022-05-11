@@ -52,7 +52,7 @@ app.get('/', AV.Cloud.HttpsRedirect(), (req, res) => {
 })
 
 app.use('/bull-queues', basicAuth({
-  users: { 'clear': '3sgfrg43ghdhwt4g2ghf' },
+  users: { 'clear': 'qq200600' },
   challenge: true
 }), serverAdapter.getRouter())
 
