@@ -49,7 +49,7 @@ export function getQueue<T>(name: string, queueOptions?: BullQueueOptions & IGet
     else if (process.env.NODE_ENV === 'production') env = 'prd'
     name = [env, name].join('-') // 在队列名称上加上环境，以区分不同环境的队列
   }
-  const queue = new BullQueue<T>(name, queueOptions?.redis?.path || process.env.REDIS_URL_bull!, queueOptions)
+  const queue = new BullQueue<T>(name, queueOptions?.redis?.path || process.env.REDIS_URL_ball!, queueOptions)
   bullBoard.addQueue(new BullAdapter(queue))
   return queue
 }
