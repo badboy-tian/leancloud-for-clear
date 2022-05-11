@@ -77,7 +77,7 @@ AV.Cloud.define('PostClearJobs', async request => {
     await util.downloadFile(url, tmpFile.path)
     // 一行行读取
     const rl = new Readlines(tmpFile.path)
-    rl.close();
+
 
     let lineBuffer : boolean | Buffer = false
     do {
@@ -100,6 +100,8 @@ AV.Cloud.define('PostClearJobs', async request => {
         }
       }
     } while (!!lineBuffer)
+    rl.close();
+
     // 清理临时文件
     tmpFile.cleanup()
   }, { concurrency: 1 })
