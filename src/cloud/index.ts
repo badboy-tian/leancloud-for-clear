@@ -77,6 +77,8 @@ AV.Cloud.define('PostClearJobs', async request => {
     await util.downloadFile(url, tmpFile.path)
     // 一行行读取
     const rl = new Readlines(tmpFile.path)
+    rl.close();
+
     let lineBuffer : boolean | Buffer = false
     do {
       lineBuffer = rl.next()
