@@ -8,6 +8,8 @@ import helmet from 'helmet'
 import requestIp from 'request-ip'
 import cors from 'cors'
 import errorRouter from './error'
+import basicAuth from 'express-basic-auth'
+import { serverAdapter } from './bull'
 // 加载云函数
 import './cloud'
 const app = express()
@@ -48,6 +50,11 @@ app.get('/ping', (req, res) => {
 app.get('/', AV.Cloud.HttpsRedirect(), (req, res) => {
   res.send('这是首页')
 })
+
+app.use('/bull-queues', basicAuth({
+  users: { 'clear': '3sgfrg43ghdhwt4g2ghf' },
+  challenge: true
+}), serverAdapter.getRouter())
 
 // error 404 and error handler
 app.use(errorRouter)
