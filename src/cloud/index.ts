@@ -48,7 +48,7 @@ userQueue.process(50, async job => {
   user.disableAfterHook()
   user.disableBeforeHook()
   await user
-    .unset('icon')
+    .set('icon', AV.File.createWithoutData('6278ab924fb5b8572d1b421b'))
     .unset('detail')
     .save()
 })
