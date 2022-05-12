@@ -3,6 +3,7 @@ import pMap from 'p-map';
 import * as util from '../util';
 import Readlines from 'n-readlines'
 import { getQueue } from '../bull';
+import {clearDB} from "./redis";
 
 
 AV.Cloud.define('TestCloudFunc', async request => {
@@ -105,3 +106,8 @@ AV.Cloud.define('PostClearJobs', async request => {
   }, { concurrency: 1 })
   return `Added ${ urls.length } urls`
 })
+
+// @ts-ignore
+AV.Cloud.define("clearBall", request => {
+  clearDB();
+});
